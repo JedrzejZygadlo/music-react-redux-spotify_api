@@ -1,15 +1,5 @@
 import spotify from '../apis/spotify';
 
-
-export const signIn = () => async (dispatch,getState) => {
-    const client_id = '8a99f92ef2034f8db7feeef6a68beda7';
-    const response_type = 'token';
-    const redirect_uri = 'http://localhost:3000/user';
-    const response = await spotify.get(`https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}`);
-    dispatch({type: 'SIGN_IN', payload: response});
-};
-
-
 export const setToken = (token) => {
     return{ 
         type: 'SET_TOKEN',
@@ -17,3 +7,32 @@ export const setToken = (token) => {
     }
 }
 
+export const fetchUserProfile = (token) => async dispatch => {
+    const response = await spotify.get('v1/me', {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+    console.log(response.data);
+    dispatch({type: 'FETCH_USER_PROFILE', payload: response.data})
+}
+
+export const fetchUserPlaylists = (token) => async dispatch => {
+    const response = await spotify.get('v1/me/playlists', {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+    console.log(response);
+    dispatch({type: 'FETCH_USER_PLAYLISTS', payload: response.data})
+}
+
+export const fetchUserCurrentPlayback = (token) => async dispatch => {
+    const response = await spotify.get('v1/me/player', {
+        headers: {
+            Authorization: 'Bearer ' + token
+        }
+    });
+    console.log(response);
+    dispatch({type: 'FETCH_USER_CURRENT_PLAYBACK', payload: response.data})
+}

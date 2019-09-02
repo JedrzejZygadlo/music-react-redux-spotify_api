@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { setToken } from '../actions';
-import { client_id, response_type, redirect_uri} from '../apis/env';
+import { client_id, response_type, redirect_uri, scopes} from '../apis/env';
 import AboutUser from './AboutUser';
 import background from '../images/background2.jpg';
 
@@ -93,7 +93,7 @@ class MainPage extends React.Component {
         }
     }
     onSignInClick = () => {
-        window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}`
+        window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes.join('%20')}&response_type=${response_type}`
     };
 
     render(){
