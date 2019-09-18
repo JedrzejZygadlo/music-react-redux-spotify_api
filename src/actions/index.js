@@ -87,7 +87,7 @@ export const fetchArtistInfo = (artistId,token) => async dispatch => {
             Authorization: 'Bearer ' + token
         }
     });
-    const artistRelatedArtists = await spotify.get(`v1/artists/${artistId}/related-artists`, {
+    const artistRelatedArtists = await spotify.get(`v1/artists/${artistId}/related-artists?limit=10`, {
         headers: {
             Authorization: 'Bearer ' + token
         }
