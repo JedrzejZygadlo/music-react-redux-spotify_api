@@ -1,5 +1,5 @@
 import spotify from '../apis/spotify';
-
+import history from '../history';
 export const setToken = (token) => {
     return{ 
         type: 'SET_TOKEN',
@@ -120,5 +120,5 @@ export const searchInformation = (formValues,token) => async dispatch => {
         }
     });
     dispatch({ type: 'SEARCH_INFORMATION', payload: response.data});
-
+    history.push('/search');
 }

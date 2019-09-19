@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle} from 'styled-components'
 import MainPage from './MainPage';
@@ -7,7 +7,8 @@ import AboutUser from './AboutUser';
 import SinglePlaylist from './SinglePlaylist';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
-
+import SearchResult from './SearchResult';
+import history from '../history';
 const GlobalStyle = createGlobalStyle `
   html,body {
     margin: 0;
@@ -23,16 +24,17 @@ const StyledApp = styled.div`
 
 const App = () => {
     return (
-        <HashRouter>
+        <Router history={history}>
             <GlobalStyle />
                 <StyledApp>
-                    <Route path='/' exact component={MainPage}/>
-                    <Route path='/user' exact component={AboutUser}/>
-                    <Route path='/playlist/:id' exact component={SinglePlaylist}/>
-                    <Route path='/artist/:id' exact component={SingleArtist}/>
-                    <Route path='/album/:id' exact component={SingleAlbum}/>
+                    <Route exact={true} path="/" component={MainPage}/>
+                    <Route exact={true} path="/user" component={AboutUser}/>
+                    <Route exact={true} path="/playlist/:id" component={SinglePlaylist}/>
+                    <Route exact={true} path="/artist/:id" component={SingleArtist}/>
+                    <Route exact={true} path="/album/:id" component={SingleAlbum}/>
+                    <Route exact={true} path="/search" component={SearchResult}/>
                 </StyledApp>        
-        </HashRouter>
+        </Router>
     )
 };
 
