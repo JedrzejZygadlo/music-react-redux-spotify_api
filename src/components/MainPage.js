@@ -96,7 +96,7 @@ class MainPage extends React.Component {
         window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scopes.join('%20')}&response_type=${response_type}`
     };
 
-    render(){
+    render(){  
         console.log(this.props.isSignedIn);
         if(!this.props.isSignedIn){
             return (

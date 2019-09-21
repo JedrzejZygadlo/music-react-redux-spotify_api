@@ -106,10 +106,11 @@ class Search extends React.Component {
         return(
                 <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
                     <Field name="search" component={this.renderInput} />
-                    <Field name="category" component={this.renderSelect} options={optionsValues}/>
+                    <Field name="category" component={this.renderSelect} options={optionsValues}/>                  
                     <StyledButton>
                         <FontAwesomeIcon icon={['fas','search']} size="2x" color="green"/>
                     </StyledButton>
+                    
                 </StyledForm>
         )
     }

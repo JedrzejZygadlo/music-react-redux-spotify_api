@@ -1,5 +1,5 @@
 import spotify from '../apis/spotify';
-
+import history from '../history';
 export const setToken = (token) => {
     return{ 
         type: 'SET_TOKEN',
@@ -87,7 +87,7 @@ export const fetchArtistInfo = (artistId,token) => async dispatch => {
             Authorization: 'Bearer ' + token
         }
     });
-    const artistRelatedArtists = await spotify.get(`v1/artists/${artistId}/related-artists`, {
+    const artistRelatedArtists = await spotify.get(`v1/artists/${artistId}/related-artists?limit=10`, {
         headers: {
             Authorization: 'Bearer ' + token
         }
@@ -120,5 +120,5 @@ export const searchInformation = (formValues,token) => async dispatch => {
         }
     });
     dispatch({ type: 'SEARCH_INFORMATION', payload: response.data});
-
+    history.push('/search');
 }

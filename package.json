@@ -16,6 +16,8 @@
     "react-select": "^3.0.4",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
+    "redux-storage": "^4.1.2",
+    "redux-storage-engine-localstorage": "^1.1.4",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.3.2"
   },
