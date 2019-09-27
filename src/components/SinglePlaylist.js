@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { fetchSinglePlaylist } from '../actions';
 import default_playlist from '../images/default_playlist.jpg';
-
+import PlayTrackButton from './PlayTackButton'
 // Styles
 const StyledPlaylistImage = styled.img `
     width: 200px;
@@ -16,7 +16,7 @@ const StyledText = styled.p`
 `;
 const StyledTrackContainer= styled.div`
     display: grid;
-    grid-template-columns: 300px 300px 300px 100px;
+    grid-template-columns:  60px 300px 300px 300px 100px;
     border-bottom: 1px solid grey;
 `;
 const StyledContainer = styled.div`
@@ -61,6 +61,7 @@ class SinglePlaylist extends React.Component {
             
             return (
                 <StyledTrackContainer>
+                    <PlayTrackButton track={track.track.id}/>
                     <StyledText>{track.track.name}</StyledText>
                     <StyledText>{track.track.album.name}</StyledText>
                     <StyledText>{track.track.artists[0].name}</StyledText>
@@ -81,6 +82,7 @@ class SinglePlaylist extends React.Component {
                     </StyledPlaylistInfo>
                 </StyledPlaylistHead>
                 <StyledTrackContainer>
+                    <StyledText></StyledText>
                     <StyledText>Tytuł</StyledText>
                     <StyledText>Album</StyledText>
                     <StyledText>Artysta</StyledText>

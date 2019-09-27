@@ -5,14 +5,13 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Styles
-
-const StyledForm = styled.form`
+const StyledForm = styled.form `
     width: 100%;
-    padding: 2em;
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    align-items: center;
+    transition: 0.4s;
 `;
 const StyledInput = styled.input`
     width: 100%;
@@ -27,26 +26,53 @@ const StyledInput = styled.input`
 const StyledError = styled.p`
     color: red;
     font-size: 1em;
+    padding: 0;
+    margin: 0;
 `;
 const StyledSelect = styled(Select)`
-    
+    position: absolute;
 `;  
-const StyledButton = styled.button`
-    background-color: transparent;
-    border: none;
-    margin-left: 0.4em;
-    height: 38px;
-`;
+
 const StyledBox = styled.div`
     display: flex;
     flex-direction: column;
 `;
 const StyledSelectBox = styled.div`
-    width: 10%;
+    display: none;
+    width: 150px;
     margin-left:0.2em;
+    transition: 0.9s;
 `;
 const StyledInputBox = styled.div`
-    width:30%;
+    display: none;
+    width:300px;
+`;
+const StyledButton = styled.button `
+    background-color: transparent;
+    border: none;
+    height: 38px;
+`;
+const StyledMainBox = styled.div `
+    position: relative;
+    top: 15px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    background: #2f3640;
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+    padding: 10px;
+    transition: 0.7s;
+    :hover ${StyledInputBox} {
+        display: block;
+    }
+    :hover ${StyledSelectBox} {
+        display: block;
+    }
+    :hover {
+        width: 600px;
+    }
 `;
 
 // Helper variables
@@ -104,14 +130,15 @@ class Search extends React.Component {
     }
     render(){  
         return(
-                <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                    <Field name="search" component={this.renderInput} />
-                    <Field name="category" component={this.renderSelect} options={optionsValues}/>                  
-                    <StyledButton>
-                        <FontAwesomeIcon icon={['fas','search']} size="2x" color="green"/>
-                    </StyledButton>
-                    
-                </StyledForm>
+                <StyledMainBox>
+                    <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                        <Field name="search" component={this.renderInput} />
+                        <Field name="category" component={this.renderSelect} options={optionsValues}/>                  
+                        <StyledButton>
+                            <FontAwesomeIcon icon={['fas','search']} size="3x" color="#1ed761"/>
+                        </StyledButton>   
+                    </StyledForm>
+                </StyledMainBox>
         )
     }
 }
@@ -122,7 +149,7 @@ const validate = (formValues) => {
         errors.search = 'Musisz wpisać wyszukiwaną frazę';
     }
     if(!formValues.category) {
-        errors.category = 'Musisz wybrać kategorie wyszukiwania'
+        errors.category = 'Musisz wybrać kategorie'
     }
     return errors;
 }

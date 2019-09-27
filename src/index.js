@@ -6,13 +6,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware,combineReducers, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas, faPlay, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { fas, faPlay, faSearch, faStepForward, faStepBackward, faBars } from "@fortawesome/free-solid-svg-icons";
 import { fab,faSpotify} from "@fortawesome/free-brands-svg-icons";
-
+import { far, faPlayCircle, faPauseCircle } from '@fortawesome/free-regular-svg-icons'
 import App from './components/App';
 import reducers from './reducers'
 
-library.add(fab,fas,faSpotify,faPlay,faSearch);
+library.add(fab,fas,far,faBars, faSpotify,faPlay,faSearch,faStepForward,faStepBackward,faPlayCircle,faPauseCircle);
 
 const reducer = storage.reducer(reducers);
 const engine = createEngine('my-save-key');

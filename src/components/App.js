@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { createGlobalStyle} from 'styled-components'
 import MainPage from './MainPage';
@@ -8,6 +8,7 @@ import SinglePlaylist from './SinglePlaylist';
 import SingleArtist from './SingleArtist';
 import SingleAlbum from './SingleAlbum';
 import SearchResult from './SearchResult';
+import Header from './Header';
 import history from '../history';
 const GlobalStyle = createGlobalStyle `
   html,body {
@@ -18,21 +19,22 @@ const GlobalStyle = createGlobalStyle `
 `;
 
 const StyledApp = styled.div`
-    height: 100vh;
-    
+    margin-top: 140px;   
 `;
 
 const App = () => {
     return (
         <Router history={history}>
             <GlobalStyle />
-                <StyledApp>
-                    <Route exact={true} path="/" component={MainPage}/>
-                    <Route exact={true} path="/user" component={AboutUser}/>
+                <Header />
+                <Route exact={true} path="/" component={MainPage}/>
+                <StyledApp> 
+                    <Switch>
                     <Route exact={true} path="/playlist/:id" component={SinglePlaylist}/>
                     <Route exact={true} path="/artist/:id" component={SingleArtist}/>
                     <Route exact={true} path="/album/:id" component={SingleAlbum}/>
                     <Route exact={true} path="/search" component={SearchResult}/>
+                    </Switch>
                 </StyledApp>        
         </Router>
     )
