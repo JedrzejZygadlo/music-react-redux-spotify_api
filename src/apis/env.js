@@ -7,5 +7,10 @@ export const scopes = [
     "user-read-private",
     "user-read-email",
     "user-follow-read",
-    "user-library-read"
+    "user-library-read",
+    "streaming",
+    "user-modify-playback-state",
+    "user-read-currently-playing",
+    "user-read-playback-state"
+
 ];
