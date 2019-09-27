@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { fetchCurrentUserSavedTracks } from '../actions'
+import { fetchCurrentUserSavedTracks, playTrack } from '../actions'
 import default_playlist from '../images/default_playlist.jpg';
 
 // Styles 
@@ -39,7 +39,7 @@ const StyledPlaylistImage = styled.img`
     height: 200px;
     z-index: -1;
 `;
-const StyledLink = styled(Link)`
+const StyledButton2 = styled.button`
     display: none;
     position: absolute;
     top: 50%;
@@ -49,8 +49,10 @@ const StyledLink = styled(Link)`
 const StyledImageBox = styled.div `
     width: 200px;
     position: relative;
-    &:hover ${StyledLink} {
+    &:hover ${StyledButton2} {
         display: inline-block;
+        background-color: transparent;
+        border: none;
     }
 `;
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
@@ -103,9 +105,15 @@ class CurrentUserSavedTracks extends React.Component {
                 <StyledSinglePlaylist key={track.track.id}>      
                     <StyledImageBox>
                          {this.renderImage(track.track.album.images)}
+                         {/*
+                         
                         <StyledLink to ={`/track/${track.track.name}`} className="hidden">
                             <StyledFontAwesomeIcon icon={['fas','play']} size="4x" color="white"/>
                         </StyledLink>
+                        */}
+                        <StyledButton2 onClick={() => {this.props.playTrack(this.props.token,this.props.device, track.track.id)}}>
+                            <StyledFontAwesomeIcon icon={['fas','play']} size="4x" color="white"/>
+                        </StyledButton2>
                     </StyledImageBox>
                     <StyledTitle>{track.track.name}</StyledTitle>
                 </StyledSinglePlaylist>
@@ -129,7 +137,7 @@ class CurrentUserSavedTracks extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { token: state.auth.token, savedTracks: state.user.tracks}
+    return { token: state.auth.token, savedTracks: state.user.tracks , device: state.player.deviceId}
 }
 
-export default connect(mapStateToProps, { fetchCurrentUserSavedTracks })(CurrentUserSavedTracks);
+export default connect(mapStateToProps, { fetchCurrentUserSavedTracks, playTrack })(CurrentUserSavedTracks);

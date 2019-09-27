@@ -122,3 +122,45 @@ export const searchInformation = (formValues,token) => async dispatch => {
     dispatch({ type: 'SEARCH_INFORMATION', payload: response.data});
     history.push('/search');
 }
+
+
+
+// PLAYER
+
+export const saveDeviceId = (deviceId) => {
+    return{
+        type: 'SAVE_DEVICE_ID',
+        playload: deviceId
+    }
+}
+
+export const playTrack = (token, deviceId, trackId) => async dispatch => {
+    console.log(token);
+    await spotify.put(`/v1/me/player/play?device_id=${deviceId}`,{
+            uris: [`spotify:track:${trackId}`]
+        },
+        {
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+        }
+    );
+    dispatch({ type: 'PLAY'});
+}
+export const setCurrentTrack = (current_track) => dispatch => {
+    dispatch({
+        type: 'SET_CURRENT_TRACK',
+        payload: current_track
+    });
+}
+
+export const changeToPaused = () => dispatch => {
+    dispatch({
+        type: 'CHANGE_TO_PAUSED'
+    })
+}
+export const changeToPlaying = () => dispatch => {
+    dispatch({
+        type: 'CHANGE_TO_PLAYING'
+    })
+}

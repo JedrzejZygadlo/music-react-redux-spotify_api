@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import  PlayTrackButton  from './PlayTackButton';
 import { fetchArtistInfo } from '../actions';
 import default_playlist from '../images/default_playlist.jpg';
 import ImageWithButton from './ImageButton';
@@ -57,7 +57,7 @@ const StyledRelatedArtistsBox = styled.div`
 `;
 const StyledTrackContainer = styled.div `
     display: grid;
-    grid-template-columns: 500px 500px 100px;
+    grid-template-columns: 60px 500px 500px 100px;
     border-bottom: 1px solid grey;
 `;
 const StyledTopTracksBox = styled.div`
@@ -100,6 +100,7 @@ class SingleArtist extends React.Component{
         return this.props.singleArtist.artistTopTracks.map(track => {
             return(
                 <StyledTrackContainer>
+                    <PlayTrackButton track={track.id}/>
                     <StyledText>{track.name}</StyledText>
                     <StyledText>{track.album.name}</StyledText>
                     <StyledText>{this.countToMinSek(track.duration_ms)}</StyledText>
@@ -130,6 +131,7 @@ class SingleArtist extends React.Component{
                 <StyledHeader>Top Tracks</StyledHeader>
                 <StyledTopTracksBox>
                     <StyledTrackContainer>
+                        <StyledText></StyledText>
                         <StyledText>Tytuł</StyledText>
                         <StyledText>Album</StyledText>
                         <StyledText>Długość</StyledText>

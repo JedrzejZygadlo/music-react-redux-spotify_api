@@ -1,12 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 import { fetchUserProfile, fetchUserCurrentPlayback, searchInformation } from '../actions';
 import CurrentUserPlaylists from './CurrentUserPlaylists';
 import UserFollowedArtists from './UserFollowedArtists';
 import CurrentUserSavedAlbums from './CurrentUserSavedAlbums';
 import CurrentUserSavedTracks from './CurrentUserSavedTracks';
 import Search from './Search';
+import Player from './Player';
 
+const StyledBox = styled.div`
+    margin-top: 140px;
+`;
 class AboutUser extends React.Component{
     componentDidMount(){
         this.props.fetchUserProfile(this.props.token);
@@ -20,7 +25,7 @@ class AboutUser extends React.Component{
         console.log(this.props.user);
         if(this.props.user.profile){
             return (
-            <div>
+            <StyledBox>
             {/*
                 <h1>
                     {this.props.user.profile.display_name}
@@ -28,12 +33,15 @@ class AboutUser extends React.Component{
                 <img src={this.props.user.profile.images[0].url}></img>s
             */
             }
+            {/*
                 <Search onSubmit={this.onSubmit} />
+            */}  
+                
                 <CurrentUserPlaylists />
                 <UserFollowedArtists />
                 <CurrentUserSavedAlbums />
                 <CurrentUserSavedTracks />
-            </div>
+            </StyledBox>
         )
         }
         return null;

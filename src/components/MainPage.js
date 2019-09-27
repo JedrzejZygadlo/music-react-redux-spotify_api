@@ -16,9 +16,10 @@ const StyledBackground = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    margin-bottom: -140px;
 `;
 
 const StyledLoginBox = styled.div`

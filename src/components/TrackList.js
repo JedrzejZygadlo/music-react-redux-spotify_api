@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import PlayTrackButton from './PlayTackButton';
 
 const StyledTrackListGrid = styled.div `
     display: grid;
-    grid-template-columns: 100px 400px 100px;
+    grid-template-columns: 60px 100px 400px 100px;
     border-bottom: 1px solid grey;
     justify-content: center;
 `;
@@ -25,6 +25,7 @@ const renderTracks = (tracks) => {
     return tracks.map(track => {
         return(
             <StyledTrackListGrid>
+                    <PlayTrackButton track={track.id}/>
                     <StyledText>{track.track_number}</StyledText>
                     <StyledText>{track.name}</StyledText>
                     <StyledText>{countToMinSek(track.duration_ms)}</StyledText>
@@ -37,6 +38,7 @@ const TrackList = (props) => {
     return(
         <>
             <StyledTrackListGrid>
+                    <StyledText></StyledText>
                     <StyledText>Numer</StyledText>
                     <StyledText>Tytuł</StyledText>   
                     <StyledText>Długość</StyledText>
